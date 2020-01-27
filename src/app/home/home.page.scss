@@ -1,22 +1,24 @@
 ion-header {
     ion-toolbar {
         --background:#091804;
+       
         ion-title {
             font-family: "Montserrat";
             padding-top: 10px;
             padding-bottom: 10px;
             color: var(--ion-color-light);
+           
             h1 {
                 margin-top: 0;
                 margin-bottom: 2px;
                 color: white;
-                font-size: 2rem;
+                font-size: 1.5rem;
                 font-weight: bolder;
                 text-shadow: 2px 2px 2px;
             }
             ion-label {
                 font-family: "Open Sans";
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                
             }
         }
@@ -28,7 +30,7 @@ ion-content {
         background-image:  url('src/assets/sky.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-       
+        padding-top: 15px; 
         ion-card {
             width: 60%;
             margin: 10px auto;
@@ -94,15 +96,12 @@ ion-content {
 // }
 
 @media screen and (max-width: 736px) {
-    ion-title {
-        h1 {
-           font-size: 1.5rem;
-            font-weight: bolder;
-        }
-        ion-label {
-           font-size: 1.2rem;
-           
-        }
+    #com-name {
+        font-size: 1rem;   
+    }
+
+    #area {
+        font-size: 0.9rem; 
     }
 
     ion-content {
@@ -115,18 +114,7 @@ ion-content {
     }
 }
 @media screen and (max-width: 1024px) {
-    ion-title {
-        h1 {
-           font-size: 1.5rem;
-            font-weight: bolder;
-        }
-        ion-label {
-           font-size: 1.2rem;
-           
-        }
-    }
-
-    ion-content {
+        ion-content {
         ion-list {
             ion-card {
                 width: 90%;
