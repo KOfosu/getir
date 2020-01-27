@@ -1,1 +1,137 @@
+ion-header {
+    ion-toolbar {
+        --background:#091804;
+        ion-title {
+            font-family: "Montserrat";
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: var(--ion-color-light);
+            h1 {
+                margin-top: 0;
+                margin-bottom: 2px;
+                color: white;
+                font-size: 2rem;
+                font-weight: bolder;
+                text-shadow: 2px 2px 2px;
+            }
+            ion-label {
+                font-family: "Open Sans";
+                font-size: 1.3rem;
+               
+            }
+        }
+    }
+}
 
+ion-content {
+    ion-list {
+        background-image:  url('src/assets/sky.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+       
+        ion-card {
+            width: 60%;
+            margin: 10px auto;
+            border-radius: 10px;
+            padding-bottom: 10px;
+            --background: white;
+
+            ion-card-header {
+                font-family: "Open Sans";
+                font-weight: bolder;
+                font-size: 1.1em;
+            }
+        }
+
+        ion-item {
+            --background: transparent;
+            --highlight-height: 0;
+            --background-activated: transparent;
+            --background-focused: transparent;
+            --background-hover: transparent;
+            ion-label {
+                font-family: "Open Sans";
+                font-weight: 200;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+            ion-input,
+            ion-select {
+                font-family: "Open Sans";
+                font-size: 0.9rem;
+                border: 1px solid var(--ion-color-light-shade);
+                margin-top: 10px;
+                margin-bottom: 5px;
+                border-radius: 4px;
+                --padding-start: 10px;
+            }
+           
+        }
+    }
+
+    // ion-list::after {
+    //     content: "";
+    //     background:  url('src/assets/sky.jpg');
+    //     opacity: 0.5;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     position: absolute;
+    //     z-index: -1;   
+    //       background-repeat: no-repeat;
+    //     background-size: cover;
+    //   }
+}
+
+// ion-footer {
+//     ion-button {
+//         --border-radius: 10px;
+//         ion-label {
+//             font-family: "Open Sans";
+//         }
+//     }
+// }
+
+@media screen and (max-width: 736px) {
+    ion-title {
+        h1 {
+           font-size: 1.5rem;
+            font-weight: bolder;
+        }
+        ion-label {
+           font-size: 1.2rem;
+           
+        }
+    }
+
+    ion-content {
+        ion-list {
+            ion-card {
+                width: 90%;
+            }
+
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    ion-title {
+        h1 {
+           font-size: 1.5rem;
+            font-weight: bolder;
+        }
+        ion-label {
+           font-size: 1.2rem;
+           
+        }
+    }
+
+    ion-content {
+        ion-list {
+            ion-card {
+                width: 90%;
+            }
+
+        }
+    }
+}

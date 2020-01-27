@@ -1,0 +1,7 @@
+<ion-content>
+    <ion-list lines="none">
+        <ion-item *ngFor="let menuItem of menuItems" (click)="menuItem.click()" [routerLink]>
+            <ion-label>{{menuItem.label}} </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

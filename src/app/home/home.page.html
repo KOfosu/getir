@@ -1,14 +1,279 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title class="ion-text-center">
+      <h1>KINGDOM ADVANCE OUTREACH</h1>
+      <ion-label>KWAHU PEPEASE FOR JESUS 2020</ion-label>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <form [formGroup]="addMember">
+    <ion-list lines="none">
+      <!-- -------------------------------------------------------- Personal Information -->
+     <ion-card>
+      <ion-card-header> Personal Information</ion-card-header>
+       <ion-card-content>
+         <!-- Full Name -->
+        <div>
+          <ion-item>
+            <ion-label position="stacked">Full Name</ion-label>
+            <ion-input type="text" formControlName="name" placeholder="Enter full name"
+              [ngClass]="{'error-field': !!nameErr}" (focusin)="(nameErr='')"></ion-input>
+          </ion-item>
+          <div class="error-field-message" *ngIf="!!nameErr">
+            <ion-label class="error-msg">{{nameErr}}</ion-label>
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div>
+          <ion-item>
+            <ion-label position="stacked">Gender</ion-label>
+            <ion-select placeholder="Select Gender" formControlName="gender" 
+            [ngClass]="{'error-field': !!genderErr}" (focusin)="(genderErr='')">
+              <ion-select-option value="f">Female</ion-select-option>
+              <ion-select-option value="m">Male</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="error-field-message" *ngIf="!!genderErr">
+            <ion-label class="error-msg">{{genderErr}}</ion-label>
+          </div>
+        </div>
+
+        <!-- Languages Spoken -->
+        <div>
+          <ion-item>
+            <ion-label position="stacked">Local Language Spoken</ion-label>
+            <ion-input type="text" formControlName="languages" placeholder="Enter local languages that you can speak eg. Twi, Ga, Ewe etc"
+              [ngClass]="{'error-field': !!languagesErr}" (focusin)="(languagesErr='')"></ion-input>
+          </ion-item>
+          <div class="error-field-message" *ngIf="!!languagesErr">
+            <ion-label class="error-msg">{{languagesErr}}</ion-label>
+          </div>
+        </div>
+       </ion-card-content>
+     </ion-card>
+
+
+
+      <!-- ----------------------------------------------------- Contact Information -->
+      <ion-card>
+        <ion-card-header>Contact Information</ion-card-header>
+        <ion-card-content>
+          <div>
+            <ion-item>
+              <ion-label position="stacked">City of Residence</ion-label>
+              <ion-input type="text" formControlName="location" placeholder="Enter city/town you live in"
+                [ngClass]="{'error-field': !!locationErr}" (focusin)="(locationErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!locationErr">
+              <ion-label class="error-msg">{{locationErr}}</ion-label>
+            </div>
+          </div>
+  
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Contact Number</ion-label>
+              <ion-input type="text" formControlName="contact" placeholder="Enter contact number"
+                [ngClass]="{'error-field': !!contactErr}" (focusin)="(contactErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!contactErr">
+              <ion-label class="error-msg">{{contactErr}}</ion-label>
+            </div>
+          </div>
+         
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Email Address</ion-label>
+              <ion-input type="email" formControlName="email" placeholder="Enter email address"
+                [ngClass]="{'error-field': !!emailErr}" (focusin)="(emailErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!emailErr">
+              <ion-label class="error-msg">{{emailErr}}</ion-label>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+
+
+      <!-- ----------------------------------------------------- Religious Information-->
+      <ion-card>
+        <ion-card-header>Religious Information</ion-card-header>
+        <ion-card-content>
+          <div>
+            <ion-item>
+              <ion-label position="stacked">What Church Do You Attend?</ion-label>
+              <ion-input type="text" formControlName="denomination" placeholder="Enter name of denomination"
+                [ngClass]="{'error-field': !!denominationErr}" (focusin)="(denominationErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!denominationErr">
+              <ion-label class="error-msg">{{denominationErr}}</ion-label>
+            </div>
+          </div>
+    
+          <div>
+            <ion-item>
+              <ion-label position="stacked">What Role Do You Play In Your
+                Church?</ion-label>
+              <ion-select placeholder="Select option" formControlName="denominationRole" 
+              [ngClass]="{'error-field': !!denominationRoleErr}" (focusin)="(denominationRoleErr='')">
+                <ion-select-option value="member">Member</ion-select-option>
+                <ion-select-option value="leader">Leader</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!denominationRoleErr">
+              <ion-label class="error-msg">{{denominationRoleErr}}</ion-label>
+            </div>
+          </div>
+    
+          <div>
+            <ion-item>
+              <ion-label position="stacked">If A Leader, Please Specify Your
+                Position?</ion-label>
+              <ion-input type="text" formControlName="denominationPosition" placeholder="Enter position"
+                [ngClass]="{'error-field': !!denominationPositionErr}" (focusin)="(denominationPositionErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!denominationPositionErr">
+              <ion-label class="error-msg">{{denominationPositionErr}}</ion-label>
+            </div>
+          </div>
+    
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Are You An Ordained Officer?</ion-label>
+              <ion-select placeholder="Select option" formControlName="denominationOfficer"
+              [ngClass]="{'error-field': !!denominationOfficerErr}" (focusin)="(denominationOfficerErr='')">
+                <ion-select-option value="yes">Yes</ion-select-option>
+                <ion-select-option value="no">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!denominationOfficerErr">
+              <ion-label class="error-msg">{{denominationOfficerErr}}</ion-label>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- ----------------------------------------------------- Education / Employment Information -->
+      <ion-card>
+        <ion-card-header>Employment/Education Information</ion-card-header>
+        <ion-card-content>
+          <div>
+            <ion-item>
+              <ion-label position="stacked">If Student, Please Specify Your Area of
+                Study?</ion-label>
+              <ion-input type="text" formControlName="student" placeholder="Enter area of study"
+                [ngClass]="{'error-field': !!studentErr}" (focusin)="(studentErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!studentErr">
+              <ion-label class="error-msg">{{studentErr}}</ion-label>
+            </div>
+          </div>
+    
+          <div>
+            <ion-item>
+              <ion-label position="stacked">If Worker, Please Specify Your Area of
+                Work?</ion-label>
+              <ion-input type="text" formControlName="worker" placeholder="Enter area of work"
+                [ngClass]="{'error-field': !!workerErr}" (focusin)="(workerErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!workerErr">
+              <ion-label class="error-msg">{{workerErr}}</ion-label>
+            </div>
+          </div>
+    
+          <div>
+            <ion-item>
+              <ion-label position="stacked">If A Worker, Please Specify The Day You Will
+                Join Us</ion-label>
+              <ion-select placeholder="Select option" formControlName="joining" 
+              [ngClass]="{'error-field': !!joiningErr}" (focusin)="(joiningErr='')">
+                <ion-select-option value="yes" *ngFor = "let option of goingOptions">{{ option }}</ion-select-option>
+             </ion-select>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!joiningErr">
+              <ion-label class="error-msg">{{joiningErr}}</ion-label>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card> 
+
+
+      <!-- ----------------------------------------------------- Outreach Information -->
+     <ion-card>
+       <ion-card-header>Outreach Information</ion-card-header>
+        <ion-card-content>
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Have You Been To Kingdom Advance Outreach
+                Mission Before?</ion-label>
+              <ion-select placeholder="Select option" formControlName="outreach"
+              [ngClass]="{'error-field': !!outreachErr}" (focusin)="(outreachErr='')">
+                <ion-select-option value="yes">Yes</ion-select-option>
+                <ion-select-option value="no">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!outreachErr">
+              <ion-label class="error-msg">{{outreachErr}}</ion-label>
+            </div>
+          </div>
+           
+    
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Are You Ready To Populate Heaven?</ion-label>
+              <ion-select placeholder="Select option" formControlName="populate"
+               [ngClass]="{'error-field': !!populateErr}" (focusin)="(populateErr='')">
+                <ion-select-option value="yes">Yes</ion-select-option>
+                <ion-select-option value="no">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!populateErr">
+              <ion-label class="error-msg">{{populateErr}}</ion-label>
+            </div>
+          </div>
+    
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-button fill="outline" class="ion-float-start" (click)="onSubmit()">
+                    <ion-label>Submit</ion-label>
+                  </ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button fill="outline" color="danger" class="ion-float-end" (click)="onCancel()">
+                    <ion-label>Cancel</ion-label>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-card-content>
+     </ion-card>
+    </ion-list>
+
+    
+  </form>
 </ion-content>
+
+<!-- <ion-footer padding-horizontal>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button fill="outline" class="ion-float-start" (click)="onSubmit()">
+            <ion-label>Submit</ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button fill="outline" color="danger" class="ion-float-end" (click)="onCancel()">
+            <ion-label>Cancel</ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer> -->
