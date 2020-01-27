@@ -1129,7 +1129,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Users\Qophi\Desktop\Web Development\registration-form\client\src\main.ts */
+    /*! C:\Users\Qophi\Desktop\Web Development\registration-form\src\main.ts */
     "./src/main.ts");
     /***/
   }

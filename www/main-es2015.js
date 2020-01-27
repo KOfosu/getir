@@ -901,7 +901,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Qophi\Desktop\Web Development\registration-form\client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Qophi\Desktop\Web Development\registration-form\src\main.ts */"./src/main.ts");
 
 
 /***/ })

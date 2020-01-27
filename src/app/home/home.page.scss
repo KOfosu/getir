@@ -1,36 +1,53 @@
 ion-header {
     ion-toolbar {
-        --background:#091804;
-       
+        --background: #005099;
+
         ion-title {
-            font-family: "Montserrat";
             padding-top: 10px;
             padding-bottom: 10px;
-            color: var(--ion-color-light);
+            color: var(--ion-color-light);       
            
-            h1 {
-                margin-top: 0;
-                margin-bottom: 2px;
-                color: white;
-                font-size: 1.5rem;
-                font-weight: bolder;
-                text-shadow: 2px 2px 2px;
+            ion-item {
+                width: 50% ;
+                --background: transparent;
+                margin: 0 auto -15px auto;
+                ion-avatar {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                }
+                h1 {
+                    margin-top: 0;
+                    margin-bottom: 2px;
+                    color: white;
+                    font-size: 2rem;
+                    font-weight: bolder;
+                    text-shadow: 1px 1px 2px;
+                    font-family: "Montserrat";
+                    display: inline-block;
+                }
             }
+
             ion-label {
                 font-family: "Open Sans";
-                font-size: 1.1rem;
-               
+                font-size: 1.3rem;
             }
         }
     }
 }
 
 ion-content {
+    #lbl {
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
     ion-list {
-        background-image:  url('src/assets/sky.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding-top: 15px; 
+        background-color: var(--ion-color-light);
+        // background-image:  url('src/assets/sky.jpg');
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        padding-top: 15px;
+
         ion-card {
             width: 60%;
             margin: 10px auto;
@@ -51,12 +68,14 @@ ion-content {
             --background-activated: transparent;
             --background-focused: transparent;
             --background-hover: transparent;
+
             ion-label {
                 font-family: "Open Sans";
                 font-weight: 200;
                 font-size: 1rem;
                 font-weight: 400;
             }
+
             ion-input,
             ion-select {
                 font-family: "Open Sans";
@@ -67,7 +86,7 @@ ion-content {
                 border-radius: 4px;
                 --padding-start: 10px;
             }
-           
+
         }
     }
 
@@ -96,25 +115,30 @@ ion-content {
 // }
 
 @media screen and (max-width: 736px) {
-    #com-name {
-        font-size: 1rem;   
+    #title ion-item {
+        width: 100%;
+        margin: 0;
+    }
+    #title h1 {
+        font-size: 1.1rem;
     }
 
-    #area {
-        font-size: 0.9rem; 
+    #title ion-label {
+        font-size: 0.9rem;
     }
 
     ion-content {
         ion-list {
             ion-card {
-                width: 90%;
+                width: 85%;
             }
 
         }
     }
 }
+
 @media screen and (max-width: 1024px) {
-        ion-content {
+    ion-content {
         ion-list {
             ion-card {
                 width: 90%;
