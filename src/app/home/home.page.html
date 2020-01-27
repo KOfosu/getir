@@ -11,51 +11,50 @@
   <form [formGroup]="addMember">
     <ion-list lines="none">
       <!-- -------------------------------------------------------- Personal Information -->
-     <ion-card>
-      <ion-card-header> Personal Information</ion-card-header>
-       <ion-card-content>
-         <!-- Full Name -->
-        <div>
-          <ion-item>
-            <ion-label position="stacked">Full Name</ion-label>
-            <ion-input type="text" formControlName="name" placeholder="Enter full name"
-              [ngClass]="{'error-field': !!nameErr}" (focusin)="(nameErr='')"></ion-input>
-          </ion-item>
-          <div class="error-field-message" *ngIf="!!nameErr">
-            <ion-label class="error-msg">{{nameErr}}</ion-label>
+      <ion-card>
+        <ion-card-header> Personal Information</ion-card-header>
+        <ion-card-content>
+          <!-- Full Name -->
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Full Name</ion-label>
+              <ion-input type="text" formControlName="name" placeholder="Enter full name"
+                [ngClass]="{'error-field': !!nameErr}" (focusin)="(nameErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!nameErr">
+              <ion-label class="error-msg">{{nameErr}}</ion-label>
+            </div>
           </div>
-        </div>
 
-        <!-- Gender -->
-        <div>
-          <ion-item>
-            <ion-label position="stacked">Gender</ion-label>
-            <ion-select placeholder="Select Gender" formControlName="gender" 
-            [ngClass]="{'error-field': !!genderErr}" (focusin)="(genderErr='')">
-              <ion-select-option value="f">Female</ion-select-option>
-              <ion-select-option value="m">Male</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <div class="error-field-message" *ngIf="!!genderErr">
-            <ion-label class="error-msg">{{genderErr}}</ion-label>
+          <!-- Gender -->
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Gender</ion-label>
+              <ion-select placeholder="Select Gender" formControlName="gender" [ngClass]="{'error-field': !!genderErr}"
+                (focusin)="(genderErr='')">
+                <ion-select-option value="f">Female</ion-select-option>
+                <ion-select-option value="m">Male</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!genderErr">
+              <ion-label class="error-msg">{{genderErr}}</ion-label>
+            </div>
           </div>
-        </div>
 
-        <!-- Languages Spoken -->
-        <div>
-          <ion-item>
-            <ion-label position="stacked">Local Language Spoken</ion-label>
-            <ion-input type="text" formControlName="languages" placeholder="Enter local languages that you can speak eg. Twi, Ga, Ewe etc"
-              [ngClass]="{'error-field': !!languagesErr}" (focusin)="(languagesErr='')"></ion-input>
-          </ion-item>
-          <div class="error-field-message" *ngIf="!!languagesErr">
-            <ion-label class="error-msg">{{languagesErr}}</ion-label>
+          <!-- Languages Spoken -->
+          <div>
+            <ion-item>
+              <ion-label position="stacked">Local Language Spoken</ion-label>
+              <ion-input type="text" formControlName="languages"
+                placeholder="Enter local languages that you can speak eg. Twi, Ga, Ewe etc"
+                [ngClass]="{'error-field': !!languagesErr}" (focusin)="(languagesErr='')"></ion-input>
+            </ion-item>
+            <div class="error-field-message" *ngIf="!!languagesErr">
+              <ion-label class="error-msg">{{languagesErr}}</ion-label>
+            </div>
           </div>
-        </div>
-       </ion-card-content>
-     </ion-card>
-
-
+        </ion-card-content>
+      </ion-card>
 
       <!-- ----------------------------------------------------- Contact Information -->
       <ion-card>
@@ -71,7 +70,7 @@
               <ion-label class="error-msg">{{locationErr}}</ion-label>
             </div>
           </div>
-  
+
           <div>
             <ion-item>
               <ion-label position="stacked">Contact Number</ion-label>
@@ -82,7 +81,7 @@
               <ion-label class="error-msg">{{contactErr}}</ion-label>
             </div>
           </div>
-         
+
           <div>
             <ion-item>
               <ion-label position="stacked">Email Address</ion-label>
@@ -95,8 +94,6 @@
           </div>
         </ion-card-content>
       </ion-card>
-
-
 
       <!-- ----------------------------------------------------- Religious Information-->
       <ion-card>
@@ -112,13 +109,13 @@
               <ion-label class="error-msg">{{denominationErr}}</ion-label>
             </div>
           </div>
-    
+
           <div>
             <ion-item>
               <ion-label position="stacked">What Role Do You Play In Your
                 Church?</ion-label>
-              <ion-select placeholder="Select option" formControlName="denominationRole" 
-              [ngClass]="{'error-field': !!denominationRoleErr}" (focusin)="(denominationRoleErr='')">
+              <ion-select placeholder="Select option" formControlName="denominationRole"
+                [ngClass]="{'error-field': !!denominationRoleErr}" (focusin)="(denominationRoleErr='')">
                 <ion-select-option value="member">Member</ion-select-option>
                 <ion-select-option value="leader">Leader</ion-select-option>
               </ion-select>
@@ -127,24 +124,25 @@
               <ion-label class="error-msg">{{denominationRoleErr}}</ion-label>
             </div>
           </div>
-    
+
           <div>
             <ion-item>
               <ion-label position="stacked">If A Leader, Please Specify Your
                 Position?</ion-label>
               <ion-input type="text" formControlName="denominationPosition" placeholder="Enter position"
-                [ngClass]="{'error-field': !!denominationPositionErr}" (focusin)="(denominationPositionErr='')"></ion-input>
+                [ngClass]="{'error-field': !!denominationPositionErr}" (focusin)="(denominationPositionErr='')">
+              </ion-input>
             </ion-item>
             <div class="error-field-message" *ngIf="!!denominationPositionErr">
               <ion-label class="error-msg">{{denominationPositionErr}}</ion-label>
             </div>
           </div>
-    
+
           <div>
             <ion-item>
               <ion-label position="stacked">Are You An Ordained Officer?</ion-label>
               <ion-select placeholder="Select option" formControlName="denominationOfficer"
-              [ngClass]="{'error-field': !!denominationOfficerErr}" (focusin)="(denominationOfficerErr='')">
+                [ngClass]="{'error-field': !!denominationOfficerErr}" (focusin)="(denominationOfficerErr='')">
                 <ion-select-option value="yes">Yes</ion-select-option>
                 <ion-select-option value="no">No</ion-select-option>
               </ion-select>
@@ -171,7 +169,7 @@
               <ion-label class="error-msg">{{studentErr}}</ion-label>
             </div>
           </div>
-    
+
           <div>
             <ion-item>
               <ion-label position="stacked">If Worker, Please Specify Your Area of
@@ -183,34 +181,33 @@
               <ion-label class="error-msg">{{workerErr}}</ion-label>
             </div>
           </div>
-    
+
           <div>
             <ion-item>
               <ion-label position="stacked">If A Worker, Please Specify The Day You Will
                 Join Us</ion-label>
-              <ion-select placeholder="Select option" formControlName="joining" 
-              [ngClass]="{'error-field': !!joiningErr}" (focusin)="(joiningErr='')">
-                <ion-select-option value="yes" *ngFor = "let option of goingOptions">{{ option }}</ion-select-option>
-             </ion-select>
+              <ion-select placeholder="Select option" formControlName="joining"
+                [ngClass]="{'error-field': !!joiningErr}" (focusin)="(joiningErr='')">
+                <ion-select-option value="yes" *ngFor="let option of goingOptions">{{ option }}</ion-select-option>
+              </ion-select>
             </ion-item>
             <div class="error-field-message" *ngIf="!!joiningErr">
               <ion-label class="error-msg">{{joiningErr}}</ion-label>
             </div>
           </div>
         </ion-card-content>
-      </ion-card> 
-
+      </ion-card>
 
       <!-- ----------------------------------------------------- Outreach Information -->
-     <ion-card>
-       <ion-card-header>Outreach Information</ion-card-header>
+      <ion-card>
+        <ion-card-header>Outreach Information</ion-card-header>
         <ion-card-content>
           <div>
             <ion-item>
               <ion-label position="stacked">Have You Been To Kingdom Advance Outreach
                 Mission Before?</ion-label>
               <ion-select placeholder="Select option" formControlName="outreach"
-              [ngClass]="{'error-field': !!outreachErr}" (focusin)="(outreachErr='')">
+                [ngClass]="{'error-field': !!outreachErr}" (focusin)="(outreachErr='')">
                 <ion-select-option value="yes">Yes</ion-select-option>
                 <ion-select-option value="no">No</ion-select-option>
               </ion-select>
@@ -219,13 +216,12 @@
               <ion-label class="error-msg">{{outreachErr}}</ion-label>
             </div>
           </div>
-           
-    
+
           <div>
             <ion-item>
               <ion-label position="stacked">Are You Ready To Populate Heaven?</ion-label>
               <ion-select placeholder="Select option" formControlName="populate"
-               [ngClass]="{'error-field': !!populateErr}" (focusin)="(populateErr='')">
+                [ngClass]="{'error-field': !!populateErr}" (focusin)="(populateErr='')">
                 <ion-select-option value="yes">Yes</ion-select-option>
                 <ion-select-option value="no">No</ion-select-option>
               </ion-select>
@@ -234,7 +230,7 @@
               <ion-label class="error-msg">{{populateErr}}</ion-label>
             </div>
           </div>
-    
+
           <div>
             <ion-grid>
               <ion-row>
@@ -244,7 +240,7 @@
                   </ion-button>
                 </ion-col>
                 <ion-col>
-                  <ion-button fill="outline" color="danger" class="ion-float-end" (click)="onCancel()">
+                  <ion-button type="submit" fill="outline" color="danger" class="ion-float-end" (click)="onCancel()">
                     <ion-label>Cancel</ion-label>
                   </ion-button>
                 </ion-col>
@@ -252,10 +248,8 @@
             </ion-grid>
           </div>
         </ion-card-content>
-     </ion-card>
+      </ion-card>
     </ion-list>
-
-    
   </form>
 </ion-content>
 

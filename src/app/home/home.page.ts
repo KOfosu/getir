@@ -81,7 +81,6 @@ export class HomePage implements OnInit {
     }
     joiningErr: string;
 
-
     get outreachField() {
         return this.addMember.get('outreach');
     }
@@ -91,9 +90,6 @@ export class HomePage implements OnInit {
         return this.addMember.get('populate');
     }
     populateErr: string;
-
-
-
 
     constructor(
         private modalCtrl: ModalController,
@@ -118,7 +114,7 @@ export class HomePage implements OnInit {
             worker: [''],
             joining: [''],
             outreach: [''],
-            populate: [''],
+            populate: ['']
         });
 
         if (this.entryType === 'Update') {
@@ -132,34 +128,35 @@ export class HomePage implements OnInit {
         }
 
         this.goingOptions = [
-          'Will go with you from the first day',
-          'Will join you on Monday',
-          'Will join you on Tuesday',
-          'Will join you on Wednesday',
-          'Will join you on Thursday',
-          'Will join you on Friday'
-        ]
+            'Will go with you from the first day',
+            'Will join you on Monday',
+            'Will join you on Tuesday',
+            'Will join you on Wednesday',
+            'Will join you on Thursday',
+            'Will join you on Friday'
+        ];
     }
 
     onSubmit() {
         // Validations
-        this.nameField.errors
-            ? (this.nameErr = this.validations.setErrorMessage(this.nameField))
-            : (this.nameErr = '');
-        this.locationField.errors
-            ? (this.locationErr = this.validations.setErrorMessage(
-                  this.locationField
-              ))
-            : (this.locationErr = '');
-        this.emailField.errors
-            ? (this.emailErr = this.validations.setErrorMessage(
-                  this.emailField
-              ))
-            : (this.emailErr = '');
+        // this.nameField.errors
+        //     ? (this.nameErr = this.validations.setErrorMessage(this.nameField))
+        //     : (this.nameErr = '');
+        // this.locationField.errors
+        //     ? (this.locationErr = this.validations.setErrorMessage(
+        //           this.locationField
+        //       ))
+        //     : (this.locationErr = '');
+        // this.emailField.errors
+        //     ? (this.emailErr = this.validations.setErrorMessage(
+        //           this.emailField
+        //       ))
+        //     : (this.emailErr = '');
 
         // Submitting entries
-        if (this.addMember.valid) {
-        }
+        // if (this.addMember.valid) {
+        // }
+        alert('Clicked on Submit');
     }
 
     onCancel() {
