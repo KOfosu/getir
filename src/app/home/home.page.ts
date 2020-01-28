@@ -1,17 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
+import { ModalController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ValidationsService } from '../services/validations.service';
 import { AlertsService } from '../services/alerts.service';
+import { HomeServiceService } from './home-service.service';
+import { async } from '@angular/core/testing';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
     @Input() entryType: string;
     @Input() data: any;
+    @ViewChild('nField', { static: false }) nField;
     goingOptions: any[];
 
     addMember: FormGroup;
@@ -66,6 +70,16 @@ export class HomePage implements OnInit {
     }
     denominationOfficerErr: string;
 
+    get holySpiritBaptiismField() {
+        return this.addMember.get('holySpiritBaptiism');
+    }
+    holySpiritBaptiismErr: string;
+
+    get occupationField() {
+        return this.addMember.get('occupation');
+    }
+    occupationErr: string;
+
     get studentField() {
         return this.addMember.get('student');
     }
@@ -91,11 +105,15 @@ export class HomePage implements OnInit {
     }
     populateErr: string;
 
+    submitSubscription: Subscription;
+
     constructor(
         private modalCtrl: ModalController,
         private fb: FormBuilder,
         private validations: ValidationsService,
-        private alertCtrl: AlertsService
+        private alertCtrl: AlertsService,
+        private addMemberService: HomeServiceService,
+        private toastCtrl: ToastController
     ) {}
 
     ngOnInit() {
@@ -110,22 +128,14 @@ export class HomePage implements OnInit {
             denominationRole: [''],
             denominationPosition: [''],
             denominationOfficer: [''],
+            holySpiritBaptiism: [''],
+            occupation: [''],
             student: [''],
             worker: [''],
             joining: [''],
             outreach: [''],
             populate: ['']
         });
-
-        if (this.entryType === 'Update') {
-            this.addMember.patchValue({
-                name: this.data.name,
-                location: this.data.pAddress,
-                contact1: this.data.location,
-                contact2: this.data.mobile,
-                email: this.data.telephone
-            });
-        }
 
         this.goingOptions = [
             'Will go with you from the first day',
@@ -137,26 +147,58 @@ export class HomePage implements OnInit {
         ];
     }
 
-    onSubmit() {
-        // Validations
-        // this.nameField.errors
-        //     ? (this.nameErr = this.validations.setErrorMessage(this.nameField))
-        //     : (this.nameErr = '');
-        // this.locationField.errors
-        //     ? (this.locationErr = this.validations.setErrorMessage(
-        //           this.locationField
-        //       ))
-        //     : (this.locationErr = '');
-        // this.emailField.errors
-        //     ? (this.emailErr = this.validations.setErrorMessage(
-        //           this.emailField
-        //       ))
-        //     : (this.emailErr = '');
+    async showToast(header, message, color) {
+        const toast = await this.toastCtrl.create({
+            header,
+            message,
+            position: 'top',
+            duration: 3000,
+            color
+        });
 
-        // Submitting entries
-        // if (this.addMember.valid) {
-        // }
-        alert('Clicked on Submit');
+        toast.present();
+    }
+
+    onSubmit() {
+        if (this.addMember.dirty) {
+            this.alertCtrl.confirm(
+                'CONFIRM REGISTRATION',
+                'Are you sure you want to proceed with registration?',
+                () => {
+                    this.submitSubscription = this.addMemberService
+                    .addMember(this.addMember.value)
+                    .subscribe(
+                        data => {
+                            if (data.hasOwnProperty('successMessage')) {
+                                this.nField.setFocus();
+                                this.showToast(
+                                    'Success',
+                                    'Registration Successful',
+                                    'success'
+                                );
+                                this.addMember.reset();
+
+                            } else {
+                                this.showToast(
+                                    'Unsuccessful',
+                                    'Registration Unsuccessful. Please fix errors and try again',
+                                    'danger'
+                                );
+                            }
+                        },
+                        err => {
+                            this.showToast(
+                                'Unsuccessful',
+                                'Registration Unsuccessful. Please try again',
+                                'danger'
+                            );
+                        }
+                    );
+                }
+            );
+        } else {
+            this.nField.setFocus();
+        }
     }
 
     onCancel() {
@@ -172,5 +214,9 @@ export class HomePage implements OnInit {
         } else {
             this.modalCtrl.dismiss();
         }
+    }
+
+    ngOnDestroy() {
+        this.submitSubscription.unsubscribe();
     }
 }

@@ -25,7 +25,7 @@
           <div>
             <ion-item>
               <ion-label position="stacked">Full Name</ion-label>
-              <ion-input type="text" formControlName="name" placeholder="Enter full name"
+              <ion-input type="text" formControlName="name" #nField placeholder="Enter full name"
                 [ngClass]="{'error-field': !!nameErr}" (focusin)="(nameErr='')"></ion-input>
             </ion-item>
             <div class="error-field-message" *ngIf="!!nameErr">
@@ -39,8 +39,8 @@
               <ion-label position="stacked">Gender</ion-label>
               <ion-select placeholder="Select Gender" formControlName="gender" [ngClass]="{'error-field': !!genderErr}"
                 (focusin)="(genderErr='')">
-                <ion-select-option value="f">Female</ion-select-option>
-                <ion-select-option value="m">Male</ion-select-option>
+                <ion-select-option value="femail">Female</ion-select-option>
+                <ion-select-option value="male">Male</ion-select-option>
               </ion-select>
             </ion-item>
             <div class="error-field-message" *ngIf="!!genderErr">
@@ -162,14 +162,14 @@
           <div>
             <ion-item>
               <ion-label position="stacked" text-wrap>Have You Been Baptized By The Holy Spirit?</ion-label>
-              <ion-select placeholder="Select option" formControlName="denominationOfficer"
-                [ngClass]="{'error-field': !!denominationOfficerErr}" (focusin)="(denominationOfficerErr='')">
+              <ion-select placeholder="Select option" formControlName="holySpiritBaptiism"
+                [ngClass]="{'error-field': !!holySpiritBaptiismErr}" (focusin)="(holySpiritBaptiismErr='')">
                 <ion-select-option value="yes">Yes</ion-select-option>
                 <ion-select-option value="no">No</ion-select-option>
               </ion-select>
             </ion-item>
-            <div class="error-field-message" *ngIf="!!denominationOfficerErr">
-              <ion-label class="error-msg">{{denominationOfficerErr}}</ion-label>
+            <div class="error-field-message" *ngIf="!!holySpiritBaptiismErr">
+              <ion-label class="error-msg">{{holySpiritBaptiismErr}}</ion-label>
             </div>
           </div>
         </ion-card-content>
@@ -183,14 +183,14 @@
           <div>
             <ion-item>
               <ion-label position="stacked">Occupation</ion-label>
-              <ion-select placeholder="Select option" formControlName="denominationOfficer"
-                [ngClass]="{'error-field': !!denominationOfficerErr}" (focusin)="(denominationOfficerErr='')">
-                <ion-select-option value="yes">Student</ion-select-option>
-                <ion-select-option value="no">Worker</ion-select-option>
+              <ion-select placeholder="Select option" formControlName="occupation"
+                [ngClass]="{'error-field': !!occupationErr}" (focusin)="(occupationErr='')">
+                <ion-select-option value="Student">Student</ion-select-option>
+                <ion-select-option value="Worker">Worker</ion-select-option>
               </ion-select>
             </ion-item>
-            <div class="error-field-message" *ngIf="!!denominationOfficerErr">
-              <ion-label class="error-msg">{{denominationOfficerErr}}</ion-label>
+            <div class="error-field-message" *ngIf="!!occupationErr">
+              <ion-label class="error-msg">{{occupationErr}}</ion-label>
             </div>
           </div>
 
@@ -277,7 +277,7 @@
                 </ion-col>
                 <ion-col>
                   <ion-button type="submit" fill="solid" color="danger" class="ion-float-end" (click)="onCancel()">
-                    <ion-label>Cancel</ion-label>
+                    <ion-label>Reset</ion-label>
                   </ion-button>
                 </ion-col>
               </ion-row>
