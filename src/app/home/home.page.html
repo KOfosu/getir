@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title id="title" class="ion-text-center">
       <ion-item lines="none">
@@ -7,14 +7,30 @@
         </ion-avatar>
         <h1 text-wrap>KINGDOM ADVANCE OUTREACH</h1>
       </ion-item>
-
-      <ion-label>KWAHU PEPEASE FOR JESUS 2020 </ion-label> <br>
-      <ion-label>(Registration Form)</ion-label>
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
+  <div id="headerTitle" >
+    <ion-grid >
+      <ion-row>
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img src="../assets/logo.jpg">
+          </ion-avatar>
+          <h1 text-wrap>KINGDOM ADVANCE OUTREACH</h1>
+        </ion-item>
+      </ion-row>
+      <ion-row >
+        <ion-label>KWAHU PEPEASE FOR JESUS 2020 </ion-label> <br>
+      </ion-row>
+      <ion-row>
+        <ion-label>(Registration Form)</ion-label>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
   <form [formGroup]="addMember">
     <ion-list lines="none">
       <!-- -------------------------------------------------------- Personal Information -->
@@ -224,7 +240,7 @@
                 Join Us</ion-label>
               <ion-select placeholder="Select option" formControlName="joining"
                 [ngClass]="{'error-field': !!joiningErr}" (focusin)="(joiningErr='')">
-                <ion-select-option value="yes" *ngFor="let option of goingOptions">{{ option }}</ion-select-option>
+                <ion-select-option *ngFor="let option of goingOptions" value="{{option}}">{{ option }}</ion-select-option>
               </ion-select>
             </ion-item>
             <div class="error-field-message" *ngIf="!!joiningErr">
