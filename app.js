@@ -20,7 +20,7 @@ app.use((req, res, next) => {
     return res.status(404).sendFile( res.redirect('/') );
 })
 
-// mongoose.connect("mongodb+srv://admin-king:test1234@outreachdb-fhliu.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
-mongoose.connect("mongodb://localhost:27017/registrationDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-king:test1234@outreachdb-fhliu.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/registrationDB", {useNewUrlParser: true});
 
 app.listen(process.env.PORT || 3000, () => debug("Server is running on port 3000"));
