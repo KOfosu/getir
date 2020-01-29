@@ -1,10 +1,18 @@
 const memberController = (Member) => {
     // Saving registration details after form is filled
     const postMember = (req, res) => {
-       let newMember = new Member({
+        let otherSubmittedLanguages = '';
+        if (req.body.languages.length >= 2) {
+            otherSubmittedLanguages = req.body.languages.slice(0,2).join(',');
+        } else {
+            otherSubmittedLanguages = req.body.languages.join(',');
+        }
+
+      let newMember = new Member({
             full_name: req.body.name,
             gender: req.body.gender,
-            localLanguages: req.body.languages,
+            localLanguages: otherSubmittedLanguages,
+            otherLanguages: req.body.otherLanguages,
             residence: req.body.location,
             contact: req.body.contact,
             email: req.body.email,
@@ -23,7 +31,7 @@ const memberController = (Member) => {
 
         newMember.save((err, savedData) => {
             if (err) {
-                return res.send(err);
+                console.log( res.send(err));
             }
             return res.status(200).send({successMessage: 'Saved'});
         })

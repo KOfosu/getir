@@ -19,5 +19,4 @@ export class HomeServiceService {
     return this.http.post('/home', data, httpOptions);
   }
 
-  
 }

@@ -1,6 +1,9 @@
 ion-content {
     --background: #b3cbe0;
 
+    p {
+        color: red;
+    }
     #headerTitle {
         background-color: #005099;
         box-shadow: 2px 2px 5px rgb(104, 97, 97);

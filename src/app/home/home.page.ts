@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ValidationsService } from '../services/validations.service';
 import { AlertsService } from '../services/alerts.service';
 import { HomeServiceService } from './home-service.service';
-import { async } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,98 +16,98 @@ export class HomePage implements OnInit, OnDestroy {
     @Input() data: any;
     @ViewChild('nField', { static: false }) nField;
     goingOptions: any[];
-
+    fixErrors = '';
     addMember: FormGroup;
 
     get nameField() {
         return this.addMember.get('name');
     }
-    nameErr: string;
+    nameErr = '';
 
     get genderField() {
         return this.addMember.get('gender');
     }
-    genderErr: string;
+    genderErr = '';
 
     get languagesField() {
         return this.addMember.get('languages');
     }
-    languagesErr: string;
+    languagesErr = '';
 
-   get otherLanguagesField() {
+    get otherLanguagesField() {
         return this.addMember.get('otherLanguages');
     }
-    otherLanguagesErr: string;
+    otherLanguagesErr = '';
 
     get locationField() {
         return this.addMember.get('location');
     }
-    locationErr: string;
+    locationErr = '';
 
     get contactField() {
         return this.addMember.get('contact');
     }
-    contactErr: string;
+    contactErr = '';
 
     get emailField() {
         return this.addMember.get('email');
     }
-    emailErr: string;
+    emailErr = '';
 
     get denominationField() {
         return this.addMember.get('denomination');
     }
-    denominationErr: string;
+    denominationErr = '';
 
     get denominationRoleField() {
         return this.addMember.get('denominationRole');
     }
-    denominationRoleErr: string;
+    denominationRoleErr = '';
 
     get denominationPositionField() {
         return this.addMember.get('denominationPosition');
     }
-    denominationPositionErr: string;
+    denominationPositionErr = '';
 
     get denominationOfficerField() {
         return this.addMember.get('denominationOfficer');
     }
-    denominationOfficerErr: string;
+    denominationOfficerErr = '';
 
     get holySpiritBaptiismField() {
         return this.addMember.get('holySpiritBaptiism');
     }
-    holySpiritBaptiismErr: string;
+    holySpiritBaptiismErr = '';
 
     get occupationField() {
         return this.addMember.get('occupation');
     }
-    occupationErr: string;
+    occupationErr = '';
 
     get studentField() {
         return this.addMember.get('student');
     }
-    studentErr: string;
+    studentErr = '';
 
     get workerField() {
         return this.addMember.get('worker');
     }
-    workerErr: string;
+    workerErr = '';
 
     get joiningField() {
         return this.addMember.get('joining');
     }
-    joiningErr: string;
+    joiningErr = '';
 
     get outreachField() {
         return this.addMember.get('outreach');
     }
-    outreachErr: string;
+    outreachErr = '';
 
     get populateField() {
         return this.addMember.get('populate');
     }
-    populateErr: string;
+    populateErr = '';
 
     submitSubscription: Subscription;
 
@@ -122,27 +121,7 @@ export class HomePage implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.addMember = this.fb.group({
-            name: ['', [this.validations.emptyTextField]],
-            gender: ['', [this.validations.emptyTextField]],
-            languages: ['', [this.validations.emptyTextField]],
-            otherLanguages: ['', [this.validations.emptyTextField]],
-            location: [''],
-            contact: [''],
-            email: [''],
-            denomination: [''],
-            denominationRole: [''],
-            denominationPosition: [''],
-            denominationOfficer: [''],
-            holySpiritBaptiism: [''],
-            occupation: [''],
-            student: [''],
-            worker: [''],
-            joining: [''],
-            outreach: [''],
-            populate: ['']
-        });
-
+        this.createForm();
         this.goingOptions = [
             'Will go with you from the first day',
             'Will join you on Monday',
@@ -153,6 +132,38 @@ export class HomePage implements OnInit, OnDestroy {
         ];
     }
 
+    createForm() {
+        this.addMember = this.fb.group({
+            name: ['', [this.validations.emptyTextField, this.validations.onlyStringsField]],
+            gender: ['', [this.validations.emptyTextField]],
+            languages: ['', [this.validations.emptyTextField, this.validations.onlyStringsField]],
+            otherLanguages: [''],
+            location: ['', [this.validations.emptyTextField, this.validations.onlyStringsField]],
+            contact: ['', [this.validations.emptyTextField, this.validations.onlyNumbersField, this.validations.contactField]],
+            email: ['', this.validations.emailField],
+            denomination: ['', [this.validations.emptyTextField]],
+            denominationRole: ['', [this.validations.emptyTextField]],
+            denominationPosition: ['', this.validations.onlyStringsField],
+            denominationOfficer: [''],
+            holySpiritBaptiism: ['', [this.validations.emptyTextField]],
+            occupation: ['', [this.validations.emptyTextField]],
+            student: ['', this.validations.onlyStringsField],
+            worker: ['', this.validations.onlyStringsField],
+            joining: [''],
+            outreach: ['', [this.validations.emptyTextField]],
+            populate: ['', [this.validations.emptyTextField]]
+        });
+    }
+    // Input Form Validation
+    validation(control: AbstractControl, message: any) {
+        if (control.errors) {
+            return this.validations.setErrorMessage(control).shift(0);
+        } else {
+            return '';
+        }
+      }
+
+    // Submitting Entry
     async showToast(header, message, color) {
         const toast = await this.toastCtrl.create({
             header,
@@ -166,43 +177,42 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-        if (this.addMember.dirty) {
+        if (this.addMember.valid) {
             this.alertCtrl.confirm(
                 'CONFIRM REGISTRATION',
                 'Are you sure you want to proceed with registration?',
                 () => {
-                    this.submitSubscription = this.addMemberService
-                    .addMember(this.addMember.value)
-                    .subscribe(
-                        data => {
-                            if (data.hasOwnProperty('successMessage')) {
-                                this.nField.setFocus();
+                    this.submitSubscription = this.addMemberService.addMember(this.addMember.value).subscribe(
+                            data => {
+                                if (data.hasOwnProperty('successMessage')) {
+                                    this.addMember.reset();
+                                    this.nField.setFocus();
+                                    this.showToast(
+                                        '',
+                                        'Registration Successful',
+                                        'success'
+                                    );
+                                    this.createForm();
+                                } else {
+                                    this.showToast(
+                                        '',
+                                        'Registration Unsuccessful',
+                                        'danger'
+                                    );
+                                }
+                            },
+                            err => {
                                 this.showToast(
-                                    'Success',
-                                    'Registration Successful',
-                                    'success'
-                                );
-                                this.addMember.reset();
-
-                            } else {
-                                this.showToast(
-                                    'Unsuccessful',
-                                    'Registration Unsuccessful. Please fix errors and try again',
+                                    '',
+                                    'Registration Unsuccessful. Please try again',
                                     'danger'
                                 );
                             }
-                        },
-                        err => {
-                            this.showToast(
-                                'Unsuccessful',
-                                'Registration Unsuccessful. Please try again',
-                                'danger'
-                            );
-                        }
-                    );
+                        );
                 }
             );
         } else {
+            this.fixErrors = 'PLEASE FIX ALL ERRORS ON THE FORM BEFORE SUBMITTING';
             this.nField.setFocus();
         }
     }
@@ -215,6 +225,7 @@ export class HomePage implements OnInit, OnDestroy {
                 () => {
                     this.addMember.reset();
                     this.modalCtrl.dismiss();
+                    this.createForm();
                 }
             );
         } else {
