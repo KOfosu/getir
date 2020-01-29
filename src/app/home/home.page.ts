@@ -35,6 +35,11 @@ export class HomePage implements OnInit, OnDestroy {
     }
     languagesErr: string;
 
+   get otherLanguagesField() {
+        return this.addMember.get('otherLanguages');
+    }
+    otherLanguagesErr: string;
+
     get locationField() {
         return this.addMember.get('location');
     }
@@ -121,6 +126,7 @@ export class HomePage implements OnInit, OnDestroy {
             name: ['', [this.validations.emptyTextField]],
             gender: ['', [this.validations.emptyTextField]],
             languages: ['', [this.validations.emptyTextField]],
+            otherLanguages: ['', [this.validations.emptyTextField]],
             location: [''],
             contact: [''],
             email: [''],
@@ -152,7 +158,7 @@ export class HomePage implements OnInit, OnDestroy {
             header,
             message,
             position: 'top',
-            duration: 3000,
+            duration: 5000,
             color
         });
 

@@ -6,7 +6,7 @@ ion-content {
         box-shadow: 2px 2px 5px rgb(104, 97, 97);
 
         ion-item {
-            width: 50%;
+            width: auto;
             --background: transparent;
             margin: 0 auto 0 auto;
 
@@ -27,7 +27,7 @@ ion-content {
         }
 
         .date {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-family: 'Open Sans';
             padding-bottom: 5px;
         }
@@ -89,60 +89,7 @@ ion-content {
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 480px) {
-    #headerTitle ion-grid ion-item {
-        width: 100%;
-        margin: 0;
-    }
-
-    #headerTitle ion-grid ion-item h1 {
-        font-size: 1.1rem;
-    }
-
-    #headerTitle ion-grid ion-label {
-        font-size: 0.9rem;
-    }
-
-    ion-content {
-        ion-list {
-            ion-card {
-                width: 90%;
-            }
-
-        }
-    }
-}
-
-@media screen and (max-width: 736px) {
-    #headerTitle ion-grid ion-item {
-        width: 100%;
-        margin: 0;
-    }
-
-    #headerTitle ion-grid ion-item h1 {
-        font-size: 1.1rem;
-    }
-
-    #headerTitle ion-grid ion-label {
-        font-size: 0.9rem;
-    }
-
-    ion-content {
-        ion-list {
-            ion-card {
-                width: 90%;
-            }
-
-        }
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    #headerTitle ion-grid ion-item {
-        width: 50%;
-        margin: 0 auto 0 auto;
-    }
-
+@media screen and (min-width: 320px) and (max-width: 1024px) {
     #headerTitle ion-grid ion-item h1 {
         font-size: 1.2rem;
     }
