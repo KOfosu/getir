@@ -284,6 +284,7 @@ let HomePage = class HomePage {
             this.alertCtrl.confirm('CONFIRM REGISTRATION', 'Are you sure you want to proceed with registration?', () => {
                 this.submitSubscription = this.addMemberService.addMember(this.addMember.value).subscribe(data => {
                     if (data.hasOwnProperty('successMessage')) {
+                        this.fixErrors = '';
                         this.addMember.reset();
                         this.nField.setFocus();
                         this.showToast('', 'Registration Successful', 'success');

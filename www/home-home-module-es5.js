@@ -373,6 +373,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.alertCtrl.confirm('CONFIRM REGISTRATION', 'Are you sure you want to proceed with registration?', function () {
               _this.submitSubscription = _this.addMemberService.addMember(_this.addMember.value).subscribe(function (data) {
                 if (data.hasOwnProperty('successMessage')) {
+                  _this.fixErrors = '';
+
                   _this.addMember.reset();
 
                   _this.nField.setFocus();

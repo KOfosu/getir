@@ -31,7 +31,7 @@ const memberController = (Member) => {
 
         newMember.save((err, savedData) => {
             if (err) {
-                console.log( res.send(err));
+                res.send( res.send(err));
             }
             return res.status(200).send({successMessage: 'Saved'});
         })
