@@ -35,16 +35,7 @@ app.use(nocache());
 app.use(compression());
 app.use(express.static(path.join(__dirname)));
 
-app.use('/v1', recordsAPI);
-
-// // passing app into the routes for the application
-// app.route('/', (req, res) => {
-//     // retrieving payload needed
-//     const startDate = req.body.startDate;
-//     const endDate = req.body.endDate;
-//     const minCount = req.body.minCount;
-//     const maxCount = req.body.maxCount;
-// });
+app.use('/v1/records', recordsAPI);
 
 // listening on the port the application is being run on
 const port = process.env.PORT || 3000;
