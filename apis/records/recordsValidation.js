@@ -4,7 +4,7 @@ const utils = require('../../utils/utils');
 module.exports = (() => {
     return {
         validate: (req) => {
-            const errorMessages = [];
+            let errorMessages = [];
 
             // schema to be used in performing validation
             const validationSchema = joi.object({
@@ -14,7 +14,7 @@ module.exports = (() => {
                 maxCount: joi.number().positive().required().allow(0).label('Maximum count'),
             });
 
-            utils.pushJoiValidationErrorsToErrorMessagesArray(validationSchema, req.body, errorMessages);
+            errorMessages = utils.pushJoiValidationErrorsToErrorMessagesArray(validationSchema, req.body, errorMessages);
 
             return errorMessages;
         },
