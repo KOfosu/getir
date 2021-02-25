@@ -1,26 +1,53 @@
+// getting needed dependencies
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-const debug = require('debug');
-const path = require('path');
 const cors = require('cors');
-const registrationModel = require('./server/registration/registration-model');
-const registrationRoute = require('./server/registration/registration-route')(registrationModel);
+const mongoose = require('mongoose');
+const nocache = require('nocache');
+const compression = require('compression');
+const path = require('path');
+const recordsAPI = require('./apis/records/recordsAPI');
 
+// initializing the express application
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'www')));
+// making a connection to the database
+mongoose.connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', () => {
+    console.log('error connecting to database');
+});
+
+db.once('open', () => {
+    console.log('Database has been opened');
+});
+
+// setting up middlewares to use for the app
+app.set('etag', false);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('tiny'));
 app.use(cors());
-app.use('/home', registrationRoute);
-app.use((req, res, next) => {
-    return res.status(404).sendFile( res.redirect('/') );
-})
+app.use(nocache());
+app.use(compression());
+app.use(express.static(path.join(__dirname)));
 
-mongoose.connect("mongodb+srv://admin-king:test1234@outreachdb-fhliu.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
-// mongoose.connect("mongodb://localhost:27017/registrationDB", {useNewUrlParser: true});
+app.use('/v1', recordsAPI);
 
-app.listen(process.env.PORT || 3000, () => debug("Server is running on port 3000"));
+// // passing app into the routes for the application
+// app.route('/', (req, res) => {
+//     // retrieving payload needed
+//     const startDate = req.body.startDate;
+//     const endDate = req.body.endDate;
+//     const minCount = req.body.minCount;
+//     const maxCount = req.body.maxCount;
+// });
+
+// listening on the port the application is being run on
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+module.exports = app;
