@@ -28,16 +28,12 @@ app.use(nocache());
 app.use(compression());
 app.use(express.static(path.join(__dirname)));
 
+// setting routes/endpoints to be used
 app.use('/v1', recordsAPI);
+app.use('*', (req, res) => {
+    return res.status(400).send('Sorry, the URL was not found on the server');
+})
 
-// // passing app into the routes for the application
-// app.route('/', (req, res) => {
-//     // retrieving payload needed
-//     const startDate = req.body.startDate;
-//     const endDate = req.body.endDate;
-//     const minCount = req.body.minCount;
-//     const maxCount = req.body.maxCount;
-// });
 
 // listening on the port the application is being run on
 const port = process.env.PORT || 3000;
