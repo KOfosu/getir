@@ -1,4 +1,3 @@
-const { TestScheduler } = require('jest');
 const request = require('supertest');
 const server = require('../../app');
 

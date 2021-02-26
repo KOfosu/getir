@@ -31,9 +31,8 @@ app.use(express.static(path.join(__dirname)));
 // setting routes/endpoints to be used
 app.use('/v1/records', recordsAPI);
 app.use('*', (req, res) => {
-    return res.status(400).send('Sorry, the URL was not found on the server');
+    return res.status(400).send('Sorry, the requested URL was not found on the server.');
 })
-
 
 // listening on the port the application is being run on
 const port = process.env.PORT || 3000;
