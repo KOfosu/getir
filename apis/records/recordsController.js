@@ -1,4 +1,4 @@
-const recordsModel = require('./recordsModel');
+const Record = require('./recordsModel');
 const validation = require('./recordsValidation');
 
 module.exports = (() => {
@@ -55,8 +55,8 @@ module.exports = (() => {
 
                 ];
 
-                // using the defined pipeline to retrieve the matching records
-                const retrievedRecords = await recordsModel.aggregate(pipeline);
+                // using the defined pipeline to retrieve matching records
+                const retrievedRecords = await Record.aggregate(pipeline);
 
                 // returning as response the retrieved records
                 return res.status(200).send({
@@ -68,7 +68,7 @@ module.exports = (() => {
                 return res.status(500).send({
                     code: 5,
                     msg: "Server Error",
-                    errors: error
+                    error: error
                 });
             }
         }

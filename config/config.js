@@ -11,7 +11,7 @@ module.exports = {
         swaggerDefinition: {
             openapi: '3.0.1',
             info: {
-                title: 'Getir Test Project API Documentation',
+                title: 'Getir Challenge Project API Documentation',
                 version: '1.0.0'
             },
             servers: [
