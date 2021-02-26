@@ -13,6 +13,8 @@ module.exports = (() => {
             if (error) {
                 error.details.forEach((error) => errorMessagesArray.push(error.message));
             }
+
+            return errorMessagesArray;
         }
     }
 })();

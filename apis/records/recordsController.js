@@ -7,7 +7,7 @@ module.exports = (() => {
             try {
                 // validating request payload
                 const errorMessages = validation.validate(req);
-                if (errorMessages) {
+                if (errorMessages.length > 0) {
                     return res.status(400).send({
                         code: 4,
                         msg: "Errors",

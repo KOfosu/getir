@@ -18,13 +18,6 @@ mongoose.connect(process.env.DB_URI, {
     useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.on('error', () => {
-    console.log('error connecting to database');
-});
-
-db.once('open', () => {
-    console.log('Database has been opened');
-});
 
 // setting up middlewares to use for the app
 app.set('etag', false);
@@ -35,16 +28,11 @@ app.use(nocache());
 app.use(compression());
 app.use(express.static(path.join(__dirname)));
 
-app.use('/v1', recordsAPI);
-
-// // passing app into the routes for the application
-// app.route('/', (req, res) => {
-//     // retrieving payload needed
-//     const startDate = req.body.startDate;
-//     const endDate = req.body.endDate;
-//     const minCount = req.body.minCount;
-//     const maxCount = req.body.maxCount;
-// });
+// setting routes/endpoints to be used
+app.use('/v1/records', recordsAPI);
+app.use('*', (req, res) => {
+    return res.status(400).send('Sorry, the requested URL was not found on the server.');
+})
 
 // listening on the port the application is being run on
 const port = process.env.PORT || 3000;
