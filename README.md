@@ -2,4 +2,4 @@
 
 
 # Instruction
-1. Add DB URI as an environment variable with the name stated in the .env.example file.
+1. Add DB URI and Sentry DSN as environment variables with the name stated in the .env.example file.
