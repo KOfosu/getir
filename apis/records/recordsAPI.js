@@ -41,7 +41,7 @@ module.exports = (() => {
 *          content:
 *            application/json:
 *              schema:
-*                $ref: '#/definitions/errorMessage'
+*                $ref: '#/definitions/serverErrorMessage'
 *definitions:
 *    postRecordSchema:
 *      type: object
@@ -90,4 +90,12 @@ module.exports = (() => {
 *          type: array
 *          items:
 *           type: string
+*    serverErrorMessage:
+*      properties:
+*        code:
+*          type: string
+*        msg:
+*          type: string
+*        error:
+*          type: object
 */
