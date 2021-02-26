@@ -68,7 +68,7 @@ module.exports = (() => {
                 return res.status(500).send({
                     code: 5,
                     msg: "Server Error",
-                    records: error
+                    errors: error
                 });
             }
         }

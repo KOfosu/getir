@@ -17,7 +17,9 @@
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "mongoose": "^5.11.15",
-    "nocache": "^2.1.0"
+    "nocache": "^2.1.0",
+    "swagger-jsdoc": "^3.7.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "jest": "^26.6.3",
