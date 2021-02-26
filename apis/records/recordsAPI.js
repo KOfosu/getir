@@ -97,5 +97,5 @@ module.exports = (() => {
 *        msg:
 *          type: string
 *        error:
-*          type: object
+*          type: string
 */
