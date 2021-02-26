@@ -9,6 +9,8 @@ const compression = require('compression');
 const path = require('path');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
+const Sentry = require('@sentry/node');
+const Tracing = require('@sentry/tracing');
 const config = require('./config/config')
 const swaggerDocs = swaggerJsDoc(config.swaggerOptions);
 const recordsAPI = require('./apis/records/recordsAPI');
@@ -16,6 +18,20 @@ const recordsAPI = require('./apis/records/recordsAPI');
 
 // initializing the express application
 const app = express();
+
+// initializing sentry and attaching it to the global object 
+// so it can be called globally
+Sentry.init({
+    tracesSampleRate: 0.5,
+    environment: process.env.NODE_ENV,
+    integrations: [
+        // enable HTTP calls tracing
+        new Sentry.Integrations.Http({ tracing: true }),
+        // enable Express.js middleware tracing
+        new Tracing.Integrations.Express({ app }),
+    ],
+});
+global.sentryTracker = Sentry;
 
 // making a connection to the database
 mongoose.connect(process.env.DB_URI, {

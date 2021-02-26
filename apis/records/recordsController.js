@@ -65,10 +65,11 @@ module.exports = (() => {
                     records: retrievedRecords
                 });
             } catch (error) {
+                sentryTracker.captureException(error);
                 return res.status(500).send({
                     code: 5,
                     msg: "Server Error",
-                    error: error
+                    error: 'A generic error occurred on the server'
                 });
             }
         }
