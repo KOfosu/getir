@@ -18,13 +18,6 @@ mongoose.connect(process.env.DB_URI, {
     useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.on('error', () => {
-    console.log('error connecting to database');
-});
-
-db.once('open', () => {
-    console.log('Database has been opened');
-});
 
 // setting up middlewares to use for the app
 app.set('etag', false);
