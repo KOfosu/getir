@@ -1,4 +1,4 @@
-# Getir test project
+# Getir Challenge Project
 
 
 # Instruction
