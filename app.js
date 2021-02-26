@@ -7,7 +7,12 @@ const mongoose = require('mongoose');
 const nocache = require('nocache');
 const compression = require('compression');
 const path = require('path');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+const config = require('./config/config')
+const swaggerDocs = swaggerJsDoc(config.swaggerOptions);
 const recordsAPI = require('./apis/records/recordsAPI');
+
 
 // initializing the express application
 const app = express();
@@ -29,6 +34,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname)));
 
 // setting routes/endpoints to be used
+app.use('/v1/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use('/v1/records', recordsAPI);
 app.use('*', (req, res) => {
     return res.status(400).send('Sorry, the requested URL was not found on the server.');
