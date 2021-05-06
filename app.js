@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname)));
 app.use('/v1/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use('/v1/records', recordsAPI);
 app.use('*', (req, res) => {
-    return res.status(400).send('Sorry, the requested URL was not found on the server.');
+    return res.status(404).send('Sorry, the requested URL was not found on the server.');
 })
 
 // listening on the port the application is being run on

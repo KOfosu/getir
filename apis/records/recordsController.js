@@ -21,7 +21,7 @@ module.exports = (() => {
                 // retrieving the records based on the parameters sent
                 // defining the pipeline to be used in filtering the records
                 const pipeline = [
-                    // retrieve documents which has their start date falling between the start and end date submitted
+                    // retrieve documents that have their start date falling between the start and end date submitted
                     {
                         "$match": {
                             "createdAt": {
